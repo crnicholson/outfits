@@ -1,6 +1,5 @@
 "use client";
 
-import Feeter from "@/components/feeter";
 import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -21,37 +20,8 @@ export default function Clothes() {
   };
 
   return (
-    <>
-      <div className="hidden md:visible z-50 md:flex items-center justify-between border-b border-border h-16 w-full px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-tiempos text-lg">charlie nicholson</Link>
-        <div className="flex gap-4">
-          <div
-            className="border border-border rounded-full h-fit py-1 px-2 text-xs bg-card-bg cursor-pointer"
-          >
-            Projects
-          </div>
-
-          <div
-            className="border border-border rounded-full h-fit py-1 px-2 text-xs bg-card-bg cursor-pointer"
-          >
-            Achievements
-          </div>
-
-          <div
-            className="border border-border rounded-full h-fit py-1 px-2 text-xs bg-card-bg cursor-pointer"
-          >
-            Experiences
-          </div>
-
-          <div
-            className="border border-border rounded-full h-fit py-1 px-2 text-xs bg-card-bg cursor-pointer"
-          >
-            Skills
-          </div>
-        </div>
-      </div>
-
-      <div className="h-fit w-full flex flex-col justify-center items-center p-10 gap-10 mb-10">
+    <div className="p-10">
+      {/* <div className="h-fit w-full flex flex-col justify-center items-center p-10 gap-10 mb-10">
         <div className="w-3/4">
           <h1 className="font-tiempos text-4xl mb-5">clothes</h1>
           <p>i kinda like clothes... maybe someday i'll release my designs</p>
@@ -61,7 +31,7 @@ export default function Clothes() {
           <h1 className="font-tiempos text-2xl mb-5">mess around with my wardrobe</h1>
           <p>not all items pictured ofc. hold and slide on the images to change the clothes.</p>
         </div>
-      </div>
+      </div> */}
 
       <SliderComponent {...settings}>
         {[
@@ -87,7 +57,7 @@ export default function Clothes() {
         {[
           { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothes 1' },
           { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothes 1' },
-          { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothes 1' },
+          // { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothes 1' },
         ].map((slide) => (
           <div key={slide.id} className="px-3">
             <div className="-mt-2 flex justify-center items-center w-full h-fit">
@@ -112,7 +82,7 @@ export default function Clothes() {
         ))}
       </SliderComponent>
 
-      <div className="h-fit w-full flex flex-col justify-center items-center p-10 gap-10 mb-10">
+      {/* <div className="h-fit w-full flex flex-col justify-center items-center p-10 gap-10 mb-10">
         <div className="w-3/4">
           <h1 className="font-tiempos text-2xl mb-5">official list of best clothing brands</h1>
 
@@ -137,8 +107,7 @@ export default function Clothes() {
 
           <p>i think expensive stuff is useless. gucci, lv, etc. if you would buy the same thing without branding, then i guess it's okay. but i would never wear a gucci shirt even if someone payed me to do it. i think modern clothing needs to focus on silhouettes, material, texture, graphics, etc., not just the logo. i see a lot of more modern streetwear brands, like off-white, which just look absolutely hideous. they are going way too deep into the world of branding. i think clothes should be brand agnostic. but i guess it doesn't really matter. just wear what makes you happy.</p>
         </div>
-      </div>
-
-    </>
+      </div> */}
+    </div>
   )
 }
