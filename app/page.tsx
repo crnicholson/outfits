@@ -1,24 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import CustomSlider from "../components/CustomSlider";
 import Image from "next/image";
 
-// @ts-ignore
-const SliderComponent = !!Slider.default ? Slider.default : Slider
-
 export default function Clothes() {
-  const settings = {
-    // dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    // centerMode: true,
-  };
-
   return (
     <div className="p-10">
       {/* <div className="h-fit w-full flex flex-col justify-center items-center p-10 gap-10 mb-10">
@@ -33,13 +19,13 @@ export default function Clothes() {
         </div>
       </div> */}
 
-      <SliderComponent {...settings}>
+      <CustomSlider>
         {[
           { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothes 1' },
           { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothes 1' },
           { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothes 1' },
           { id: 4, src: '/clothes/tops/aime.png', alt: 'clothes 1' },
-          { id: 5, src: '/clothes/tops/zipup.png', alt: 'clothes 1' },
+          // { id: 5, src: '/clothes/tops/zipup.png', alt: 'clothes 1' },
           // { id: 6, src: '/clothes/tops/ems.png', alt: 'clothes 1' },
           // { id: 7, src: '/clothes/tops/stussy-ls.png', alt: 'clothes 1' },
           { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothes 1' },
@@ -51,9 +37,9 @@ export default function Clothes() {
             </div>
           </div>
         ))}
-      </SliderComponent>
+      </CustomSlider>
 
-      <SliderComponent {...settings}>
+      <CustomSlider>
         {[
           { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothes 1' },
           { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothes 1' },
@@ -65,9 +51,9 @@ export default function Clothes() {
             </div>
           </div>
         ))}
-      </SliderComponent>
+      </CustomSlider>
 
-      <SliderComponent {...settings}>
+      <CustomSlider>
         {[
           { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothes 1' },
           { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothes 1' },
@@ -80,7 +66,7 @@ export default function Clothes() {
             </div>
           </div>
         ))}
-      </SliderComponent>
+      </CustomSlider>
 
       {/* <div className="h-fit w-full flex flex-col justify-center items-center p-10 gap-10 mb-10">
         <div className="w-3/4">
