@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import CustomSlider from "../components/CustomSlider";
 import Image from "next/image";
 
@@ -21,15 +20,15 @@ export default function Clothes() {
 
       <CustomSlider>
         {[
-          { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothes 1' },
-          { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothes 1' },
-          { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothes 1' },
-          { id: 4, src: '/clothes/tops/aime.png', alt: 'clothes 1' },
-          // { id: 5, src: '/clothes/tops/zipup.png', alt: 'clothes 1' },
-          // { id: 6, src: '/clothes/tops/ems.png', alt: 'clothes 1' },
-          // { id: 7, src: '/clothes/tops/stussy-ls.png', alt: 'clothes 1' },
-          { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothes 1' },
-          { id: 7, src: '/clothes/tops/purple-yellow.png', alt: 'clothes 1' },
+          { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothing' },
+          { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothing' },
+          { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothing' },
+          { id: 4, src: '/clothes/tops/aime.png', alt: 'clothing' },
+          // { id: 5, src: '/clothes/tops/zipup.png', alt: 'clothing' },
+          // { id: 6, src: '/clothes/tops/ems.png', alt: 'clothing' },
+          // { id: 7, src: '/clothes/tops/stussy-ls.png', alt: 'clothing' },
+          { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothing' },
+          { id: 7, src: '/clothes/tops/purple-yellow.png', alt: 'clothing' },
         ].map((slide) => (
           <div key={slide.id} className="px-3">
             <div className="flex justify-center items-center w-full">
@@ -41,9 +40,9 @@ export default function Clothes() {
 
       <CustomSlider>
         {[
-          { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothes 1' },
-          { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothes 1' },
-          // { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothes 1' },
+          { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothing' },
+          { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothing' },
+          // { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothing' },
         ].map((slide) => (
           <div key={slide.id} className="px-3">
             <div className="-mt-2 flex justify-center items-center w-full h-fit">
@@ -55,10 +54,10 @@ export default function Clothes() {
 
       <CustomSlider>
         {[
-          { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothes 1' },
-          { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothes 1' },
-          { id: 3, src: '/clothes/shoes/timbs.avif', alt: 'clothes 1' },
-          { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothes 1' },
+          { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothing' },
+          { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothing' },
+          { id: 3, src: '/clothes/shoes/timbs.avif', alt: 'clothing' },
+          { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothing' },
         ].map((slide) => (
           <div key={slide.id} className="px-3">
             <div className="flex justify-center items-center w-full h-full">
