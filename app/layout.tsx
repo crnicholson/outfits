@@ -13,6 +13,13 @@ const crevv = localFont({
   display: 'swap',
 });
 
+const ibm = localFont({
+  src: '../public/fonts/IBMPlexMono-Regular.ttf',
+  variable: '--font-ibm',
+  display: 'swap',
+});
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased ${crevv.variable}`}
+        className={`antialiased ${crevv.variable} ${ibm.variable}`}
       >
         {children}
       </body>
