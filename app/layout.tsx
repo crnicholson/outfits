@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+// import "./cursor.css";
+// import CustomCursor from "../components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,6 +32,7 @@ export default function RootLayout({
       <body
         className={`antialiased ${crevv.variable} ${ibm.variable}`}
       >
+        {/* <CustomCursor /> */}
         {children}
       </body>
     </html>

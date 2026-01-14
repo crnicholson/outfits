@@ -44,6 +44,29 @@ export default function Clothes() {
           <p>not all items pictured ofc. hold and slide on the images to change the clothes.</p>
         </div>
       </div> */}
+        <CustomSlider>
+          {[
+            { id: 1, src: '/clothes/hats/arc.avif', alt: 'clothing', title: 'Arcteryx', body: 'Black bird toque' },
+            { id: 2, src: '/clothes/hats/stussy.avif', alt: 'clothing', title: 'Stussy', body: 'Brushed out beanie' },
+            { id: 3, src: '/clothes/hats/palace.avif', alt: 'clothing', title: 'Oakely ', body: 'Palace x Oakley colab' },
+          ].map((slide) => (
+            <div key={slide.id} className="px-3 mb-10">
+              <div className="flex justify-center items-center w-full">
+                <Image
+                  src={slide.src!}
+                  width={150}
+                  height={150}
+                  alt={slide.alt!}
+                  className="h-24 w-fit"
+                  onMouseEnter={handleMouseEnter(slide)}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            </div>
+          ))}
+        </CustomSlider>
 
         <CustomSlider>
           {[
@@ -65,6 +88,29 @@ export default function Clothes() {
                   height={270}
                   alt={slide.alt!}
                   className="h-68"
+                  onMouseEnter={handleMouseEnter(slide)}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            </div>
+          ))}
+        </CustomSlider>
+
+        <CustomSlider>
+          {[
+            { id: 1, src: '/clothes/belt/diesel.png', alt: 'clothing', title: 'Diesel', body: 'Belt' },
+            { id: 2, src: '/clothes/belt/stussy.avif', alt: 'clothing', title: 'Stussy ', body: 'Cowboy belt' },
+          ].map((slide) => (
+            <div key={slide.id} className="px-3">
+              <div className="flex justify-center items-center w-full">
+                <Image
+                  src={slide.src!}
+                  width={150}
+                  height={150}
+                  alt={slide.alt!}
+                  className="h-10 w-fit"
                   onMouseEnter={handleMouseEnter(slide)}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
@@ -159,8 +205,8 @@ export default function Clothes() {
             }}
             className="border p-2 bg-white min-w-40 max-w-64 z-50"
           >
-            <h1 className="font-bold text-sm">{hoveredSlide.title.toUpperCase()}</h1>
-            <p className="text-xs mt-2">{hoveredSlide.body.toUpperCase()}</p>
+            <h1 className="font-bold text-[12px]">{hoveredSlide.title.toUpperCase()}</h1>
+            <p className="text-[11px] mt-2">{hoveredSlide.body.toUpperCase()}</p>
           </div>
         )}
       </div>
