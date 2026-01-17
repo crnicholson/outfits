@@ -258,15 +258,21 @@ export default function Clothes() {
             <h3 className="text-xs font-bold mb-2 text-center">ACCESSORIES</h3>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { id: 'bape', src: '/clothes/accessories/bape.png', alt: 'Bape accessory' },
-                { id: 'oakley', src: '/clothes/accessories/oakley-carabiner.png', alt: 'Oakley accessory' },
-                { id: 'sup', src: '/clothes/accessories/sup.png', alt: 'Supreme accessory' },
-                { id: 'vivi', src: '/clothes/accessories/vivi.png', alt: 'Vivienne Westwood accessory' },
+                { id: '1', src: '/clothes/accessories/bape.png', alt: 'bape tote' },
+                { id: '2', src: '/clothes/accessories/oakley-carabiner.png', alt: 'oakley carabiner' },
+                { id: '3', src: '/clothes/accessories/sup.png', alt: 'supreme boxing gloves' },
+                { id: '4', src: '/clothes/accessories/vivi.png', alt: 'vivienne westwood necklace' },
               ].map((accessory) => (
                 <div
                   key={accessory.id}
                   onClick={() => toggleAccessory(accessory.id)}
-                  className={`relative w-16 h-16 border cursor-pointer transition-all hover:scale-102 ${selectedAccessories.includes(accessory.id)
+                  className={`relative w-16 h-16 border cursor-pointer hover:z-50 transform hover:scale-213 transition-transform duration-100 ${(() => {
+                    const idx = parseInt(accessory.id, 10) - 1;
+                    if (idx % 2 === 0 && idx < 2) return 'origin-top-left';
+                    if (idx % 2 === 1 && idx < 2) return 'origin-top-right';
+                    if (idx % 2 === 0 && idx >= 2) return 'origin-bottom-left';
+                    return 'origin-bottom-right';
+                  })()} ${selectedAccessories.includes(accessory.id)
                     ? 'bg-gray-100'
                     : 'bg-white'
                     }`}
@@ -274,12 +280,12 @@ export default function Clothes() {
                   <Image
                     src={accessory.src}
                     alt={accessory.alt}
-                    width={60}
-                    height={60}
-                    className="w-full h-full object-contain p-1"
+                    width={400}
+                    height={400}
+                    className={`w-full h-full object-contain p-1`}
                   />
                   {selectedAccessories.includes(accessory.id) && (
-                    <div className="absolute top-0 right-0 w-4 h-4 bg-black rounded-full flex items-center justify-center -mt-1 -mr-1">
+                    <div className="absolute top-0 right-0 w-4 h-4 rounded-full flex items-center justify-center -mt-1 -mr-1 bg-black">
                       <span className="text-white text-[10px]">✓</span>
                     </div>
                   )}
