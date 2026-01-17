@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useRef } from "react";
@@ -68,14 +67,14 @@ export default function Clothes() {
               { id: 2, src: '/clothes/hats/stussy.avif', alt: 'clothing', title: 'Stussy', body: 'Brushed out beanie' },
               { id: 3, src: '/clothes/hats/palace.avif', alt: 'clothing', title: 'Oakely ', body: 'Palace x Oakley colab' },
             ].map((slide) => (
-              <div key={slide.id} className="px-3 mb-10">
+              <div key={slide.id} className="px-3 mb-7">
                 <div className="flex justify-center items-center w-full">
                   <Image
                     src={slide.src!}
                     width={150}
                     height={150}
                     alt={slide.alt!}
-                    className="h-22 w-fit"
+                    className="h-[7vh] w-fit" // h-22
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
@@ -109,7 +108,7 @@ export default function Clothes() {
                     width={270}
                     height={270}
                     alt={slide.alt!}
-                    className="h-68"
+                    className="h-[22vh] w-fit" // h-68
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
@@ -136,7 +135,7 @@ export default function Clothes() {
                     width={150}
                     height={150}
                     alt={slide.alt!}
-                    className="h-10 w-fit"
+                    className="h-[4vh] w-fit" // h-10
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
@@ -164,7 +163,7 @@ export default function Clothes() {
                     width={200}
                     height={200}
                     alt={slide.alt!}
-                    className="h-100"
+                    className="h-[37vh] w-auto" // h-100
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
@@ -193,6 +192,7 @@ export default function Clothes() {
                     width={200}
                     height={200}
                     alt={slide.alt!}
+                    className="h-[14vh] w-auto" // h-50
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
