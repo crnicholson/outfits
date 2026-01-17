@@ -3,22 +3,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface ArrowProps {
-  onClick?: () => void;
-  direction: "left" | "right";
-}
-
-const Arrow: React.FC<ArrowProps> = ({ onClick, direction }) => (
-  <button
-    type="button"
-    onClick={onClick}
-    className={`rounded-full bg-transparent absolute top-1/2 z-10 ${direction === "left" ? "left-2" : "right-2"}`}
-    title={direction === "left" ? "previous" : "next"}
-  >
-    <div className={`h-6 w-6 border-b border-r ${direction === "left" ? "rotate-135" : "-rotate-45"}`}></div>
-  </button>
-);
-
 export interface CustomSliderRef {
   goTo: (index: number) => void;
 }
@@ -26,10 +10,11 @@ export interface CustomSliderRef {
 interface CustomSliderProps {
   children: React.ReactNode;
   currentSlide?: number;
+  onSlideChange?: (index: number) => void;
 }
 
 const CustomSlider = forwardRef<CustomSliderRef, CustomSliderProps>(
-  ({ children, currentSlide = 0 }, ref) => {
+  ({ children, currentSlide = 0, onSlideChange }, ref) => {
     const sliderRef = useRef<any>(null);
 
     useImperativeHandle(ref, () => ({
@@ -50,10 +35,15 @@ const CustomSlider = forwardRef<CustomSliderRef, CustomSliderProps>(
 
     return (
       <div className="relative">
-        <Slider ref={sliderRef} {...{
-          nextArrow: <Arrow direction="right" />,
-          prevArrow: <Arrow direction="left" />,
-        }}>
+        <Slider
+          ref={sliderRef}
+          arrows={false}
+          afterChange={(index) => {
+            if (onSlideChange) {
+              onSlideChange(index);
+            }
+          }}
+        >
           {children}
         </Slider>
       </div>

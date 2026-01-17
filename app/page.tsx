@@ -2,7 +2,8 @@
 "use client";
 
 import React, { useState } from "react";
-import CustomSlider from "../components/CustomSlider";
+import CustomSlider from "@/components/CustomSlider";
+import Arrow from "@/components/Arrow";
 import Image from "next/image";
 
 export default function Clothes() {
@@ -16,6 +17,12 @@ export default function Clothes() {
 
   const [hoveredSlide, setHoveredSlide] = useState<SlideType | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const [hatsSlide, setHatsSlide] = useState(0);
+  const [topsSlide, setTopsSlide] = useState(0);
+  const [beltsSlide, setBeltsSlide] = useState(0);
+  const [bottomsSlide, setBottomsSlide] = useState(0);
+  const [shoesSlide, setShoesSlide] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLImageElement>) => {
     setMousePos({ x: e.clientX, y: e.clientY });
@@ -44,130 +51,150 @@ export default function Clothes() {
           <p>not all items pictured ofc. hold and slide on the images to change the clothes.</p>
         </div>
       </div> */}
-        <CustomSlider>
-          {[
-            { id: 1, src: '/clothes/hats/arc.avif', alt: 'clothing', title: 'Arcteryx', body: 'Black bird toque' },
-            { id: 2, src: '/clothes/hats/stussy.avif', alt: 'clothing', title: 'Stussy', body: 'Brushed out beanie' },
-            { id: 3, src: '/clothes/hats/palace.avif', alt: 'clothing', title: 'Oakely ', body: 'Palace x Oakley colab' },
-          ].map((slide) => (
-            <div key={slide.id} className="px-3 mb-10">
-              <div className="flex justify-center items-center w-full">
-                <Image
-                  src={slide.src!}
-                  width={150}
-                  height={150}
-                  alt={slide.alt!}
-                  className="h-24 w-fit"
-                  onMouseEnter={handleMouseEnter(slide)}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  style={{ cursor: 'pointer' }}
-                />
+        <div className="relative">
+          <Arrow left={true} onClick={() => setHatsSlide((prev) => Math.max(0, prev - 1))} />
+          <Arrow left={false} onClick={() => setHatsSlide((prev) => Math.min(2, prev + 1))} />
+          <CustomSlider currentSlide={hatsSlide} onSlideChange={setHatsSlide}>
+            {[
+              { id: 1, src: '/clothes/hats/arc.avif', alt: 'clothing', title: 'Arcteryx', body: 'Black bird toque' },
+              { id: 2, src: '/clothes/hats/stussy.avif', alt: 'clothing', title: 'Stussy', body: 'Brushed out beanie' },
+              { id: 3, src: '/clothes/hats/palace.avif', alt: 'clothing', title: 'Oakely ', body: 'Palace x Oakley colab' },
+            ].map((slide) => (
+              <div key={slide.id} className="px-3 mb-10">
+                <div className="flex justify-center items-center w-full">
+                  <Image
+                    src={slide.src!}
+                    width={150}
+                    height={150}
+                    alt={slide.alt!}
+                    className="h-24 w-fit"
+                    onMouseEnter={handleMouseEnter(slide)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </CustomSlider>
+            ))}
+          </CustomSlider>
+        </div>
 
-        <CustomSlider>
-          {[
-            { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothing', title: 'Stussy', body: 'Surfboard tee' },
-            { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothing', title: 'Marlboro', body: 'Vintage Marlboro fleece' },
-            { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothing', title: 'Stussy', body: 'Pitstop tee' },
-            { id: 4, src: '/clothes/tops/aime.png', alt: 'clothing', title: 'Aime Leon Dore', body: 'Tee' },
-            // { id: 5, src: '/clothes/tops/zipup.png', alt: 'clothing', title: '', body: '' },
-            // { id: 6, src: '/clothes/tops/ems.png', alt: 'clothing', title: '', body: '' },
-            // { id: 7, src: '/clothes/tops/stussy-ls.png', alt: 'clothing', title: '', body: '' },
-            { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothing', title: 'Neovision', body: 'Flannel' },
-            { id: 7, src: '/clothes/tops/purple-yellow.png', alt: 'clothing', title: 'Vintage', body: 'Purple and yellow fleece' },
-          ].map((slide) => (
-            <div key={slide.id} className="px-3">
-              <div className="flex justify-center items-center w-full">
-                <Image
-                  src={slide.src!}
-                  width={270}
-                  height={270}
-                  alt={slide.alt!}
-                  className="h-68"
-                  onMouseEnter={handleMouseEnter(slide)}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  style={{ cursor: 'pointer' }}
-                />
+        <div className="relative">
+          <Arrow left={true} onClick={() => setTopsSlide((prev) => Math.max(0, prev - 1))} />
+          <Arrow left={false} onClick={() => setTopsSlide((prev) => Math.min(5, prev + 1))} />
+          <CustomSlider currentSlide={topsSlide} onSlideChange={setTopsSlide}>
+            {[
+              { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothing', title: 'Stussy', body: 'Surfboard tee' },
+              { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothing', title: 'Marlboro', body: 'Vintage Marlboro fleece' },
+              { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothing', title: 'Stussy', body: 'Pitstop tee' },
+              { id: 4, src: '/clothes/tops/aime.png', alt: 'clothing', title: 'Aime Leon Dore', body: 'Tee' },
+              // { id: 5, src: '/clothes/tops/zipup.png', alt: 'clothing', title: '', body: '' },
+              // { id: 6, src: '/clothes/tops/ems.png', alt: 'clothing', title: '', body: '' },
+              // { id: 7, src: '/clothes/tops/stussy-ls.png', alt: 'clothing', title: '', body: '' },
+              { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothing', title: 'Neovision', body: 'Flannel' },
+              { id: 7, src: '/clothes/tops/purple-yellow.png', alt: 'clothing', title: 'Vintage', body: 'Purple and yellow fleece' },
+            ].map((slide) => (
+              <div key={slide.id} className="px-3">
+                <div className="flex justify-center items-center w-full">
+                  <Image
+                    src={slide.src!}
+                    width={270}
+                    height={270}
+                    alt={slide.alt!}
+                    className="h-68"
+                    onMouseEnter={handleMouseEnter(slide)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </CustomSlider>
+            ))}
+          </CustomSlider>
+        </div>
 
-        <CustomSlider>
-          {[
-            { id: 1, src: '/clothes/belt/diesel.png', alt: 'clothing', title: 'Diesel', body: 'Belt' },
-            { id: 2, src: '/clothes/belt/stussy.avif', alt: 'clothing', title: 'Stussy ', body: 'Cowboy belt' },
-          ].map((slide) => (
-            <div key={slide.id} className="px-3">
-              <div className="flex justify-center items-center w-full">
-                <Image
-                  src={slide.src!}
-                  width={150}
-                  height={150}
-                  alt={slide.alt!}
-                  className="h-10 w-fit"
-                  onMouseEnter={handleMouseEnter(slide)}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  style={{ cursor: 'pointer' }}
-                />
+        <div className="relative">
+          <Arrow left={true} onClick={() => setBeltsSlide((prev) => Math.max(0, prev - 1))} />
+          <Arrow left={false} onClick={() => setBeltsSlide((prev) => Math.min(1, prev + 1))} />
+          <CustomSlider currentSlide={beltsSlide} onSlideChange={setBeltsSlide}>
+            {[
+              { id: 1, src: '/clothes/belt/diesel.png', alt: 'clothing', title: 'Diesel', body: 'Belt' },
+              { id: 2, src: '/clothes/belt/stussy.avif', alt: 'clothing', title: 'Stussy ', body: 'Cowboy belt' },
+            ].map((slide) => (
+              <div key={slide.id} className="px-3">
+                <div className="flex justify-center items-center w-full">
+                  <Image
+                    src={slide.src!}
+                    width={150}
+                    height={150}
+                    alt={slide.alt!}
+                    className="h-10 w-fit"
+                    onMouseEnter={handleMouseEnter(slide)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </CustomSlider>
+            ))}
+          </CustomSlider>
+        </div>
 
-        <CustomSlider>
-          {[
-            { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothing', title: 'Dickies', body: 'Double knee' },
-            { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothing', title: 'Hollister', body: 'Sweatpants' },
-            // { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothing', title: '', body: '' },
-          ].map((slide) => (
-            <div key={slide.id} className="px-3">
-              <div className="-mt-2 flex justify-center items-center w-full h-fit">
-                <Image
-                  src={slide.src!}
-                  width={200}
-                  height={200}
-                  alt={slide.alt!}
-                  className="h-100"
-                  onMouseEnter={handleMouseEnter(slide)}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  style={{ cursor: 'pointer' }}
-                />
+        <div className="relative">
+          <Arrow left={true} onClick={() => setBottomsSlide((prev) => Math.max(0, prev - 1))} />
+          <Arrow left={false} onClick={() => setBottomsSlide((prev) => Math.min(1, prev + 1))} />
+          <CustomSlider currentSlide={bottomsSlide} onSlideChange={setBottomsSlide}>
+            {[
+              { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothing', title: 'Dickies', body: 'Double knee' },
+              { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothing', title: 'Hollister', body: 'Sweatpants' },
+              // { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothing', title: '', body: '' },
+            ].map((slide) => (
+              <div key={slide.id} className="px-3">
+                <div className="-mt-2 flex justify-center items-center w-full h-fit">
+                  <Image
+                    src={slide.src!}
+                    width={200}
+                    height={200}
+                    alt={slide.alt!}
+                    className="h-100"
+                    onMouseEnter={handleMouseEnter(slide)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </CustomSlider>
+            ))}
+          </CustomSlider>
+        </div>
 
-        <CustomSlider>
-          {[
-            { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothing', title: 'Wales Bonner', body: 'Wales Bonner x Adidas Sambas' },
-            { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothing', title: 'Birkenstocks', body: 'Bostons' },
-            { id: 3, src: '/clothes/shoes/timbs.avif', alt: 'clothing', title: 'Timberlands', body: '6 inch boots' },
-            { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothing', title: 'Golden Goose', body: 'Ballstars' },
-          ].map((slide) => (
-            <div key={slide.id} className="px-3">
-              <div className="flex justify-center items-center w-full h-full">
-                <Image
-                  src={slide.src!}
-                  width={200}
-                  height={200}
-                  alt={slide.alt!}
-                  onMouseEnter={handleMouseEnter(slide)}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  style={{ cursor: 'pointer' }}
-                />
+        <div className="relative">
+          <Arrow left={true} onClick={() => setShoesSlide((prev) => prev === 0 ? 3 : prev - 1)} />
+          <Arrow left={false} onClick={() => setShoesSlide((prev) => prev === 3 ? 0 : prev + 1)} />
+          <CustomSlider currentSlide={shoesSlide} onSlideChange={setShoesSlide}>
+            {[
+              { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothing', title: 'Wales Bonner', body: 'Wales Bonner x Adidas Sambas' },
+              { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothing', title: 'Birkenstocks', body: 'Bostons' },
+              { id: 3, src: '/clothes/shoes/timbs.avif', alt: 'clothing', title: 'Timberlands', body: '6 inch boots' },
+              { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothing', title: 'Golden Goose', body: 'Ballstars' },
+            ].map((slide) => (
+              <div key={slide.id} className="px-3">
+                <div className="flex justify-center items-center w-full h-full">
+                  <Image
+                    src={slide.src!}
+                    width={200}
+                    height={200}
+                    alt={slide.alt!}
+                    onMouseEnter={handleMouseEnter(slide)}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </CustomSlider>
+            ))}
+          </CustomSlider>
+        </div>
 
         {/* <div className="h-fit w-full flex flex-col justify-center items-center p-10 gap-10 mb-10">
         <div className="w-3/4">
