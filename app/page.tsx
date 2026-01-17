@@ -25,7 +25,7 @@ export default function Clothes() {
   const [bottomsSlide, setBottomsSlide] = useState(0);
   const [shoesSlide, setShoesSlide] = useState(0);
 
-  const [selectedAccessories, setSelectedAccessories] = useState<string[]>([]);
+  const [selectedAccessories, setSelectedAccessories] = useState<number[]>([]);
 
   const hatsSliderRef = useRef<CustomSliderRef>(null);
   const topsSliderRef = useRef<CustomSliderRef>(null);
@@ -46,7 +46,7 @@ export default function Clothes() {
     setHoveredSlide(null);
   };
 
-  const toggleAccessory = (id: string) => {
+  const toggleAccessory = (id: number) => {
     setSelectedAccessories(prev =>
       prev.includes(id) ? prev.filter(a => a !== id) : [...prev, id]
     );
@@ -161,15 +161,16 @@ export default function Clothes() {
           <CustomSlider ref={bottomsSliderRef} currentSlide={bottomsSlide} onSlideChange={setBottomsSlide}>
             {[
               { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothing', title: 'Dickies', body: 'Double knee' },
-              { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothing', title: 'Hollister', body: 'Sweatpants' },
+              { id: 2, src: '/clothes/bottoms/wranglers.png', alt: 'clothing', title: 'Wrangler', body: 'Wide leg' },
+              // { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothing', title: 'Hollister', body: 'Sweatpants' },
               // { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothing', title: '', body: '' },
             ].map((slide) => (
               <div key={slide.id} className="px-3">
                 <div className="-mt-2 flex justify-center items-center w-full h-fit">
                   <Image
                     src={slide.src!}
-                    width={200}
-                    height={200}
+                    width={600}
+                    height={600}
                     alt={slide.alt!}
                     className="h-[37vh] w-auto" // h-100
                     onMouseEnter={handleMouseEnter(slide)}
@@ -258,16 +259,16 @@ export default function Clothes() {
             <h3 className="text-xs font-bold mb-2 text-center">ACCESSORIES</h3>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { id: '1', src: '/clothes/accessories/bape.png', alt: 'bape tote' },
-                { id: '2', src: '/clothes/accessories/oakley-carabiner.png', alt: 'oakley carabiner' },
-                { id: '3', src: '/clothes/accessories/sup.png', alt: 'supreme boxing gloves' },
-                { id: '4', src: '/clothes/accessories/vivi.png', alt: 'vivienne westwood necklace' },
+                { id: 1, src: '/clothes/accessories/bape.png', alt: 'bape tote' },
+                { id: 2, src: '/clothes/accessories/oakley-carabiner.png', alt: 'oakley carabiner' },
+                { id: 3, src: '/clothes/accessories/sup.png', alt: 'supreme boxing gloves' },
+                { id: 4, src: '/clothes/accessories/vivi.png', alt: 'vivienne westwood necklace' },
               ].map((accessory) => (
                 <div
                   key={accessory.id}
                   onClick={() => toggleAccessory(accessory.id)}
                   className={`relative w-16 h-16 border cursor-pointer hover:z-50 transform hover:scale-213 transition-transform duration-100 ${(() => {
-                    const idx = parseInt(accessory.id, 10) - 1;
+                    const idx = accessory.id - 1;
                     if (idx % 2 === 0 && idx < 2) return 'origin-top-left';
                     if (idx % 2 === 1 && idx < 2) return 'origin-top-right';
                     if (idx % 2 === 0 && idx >= 2) return 'origin-bottom-left';
