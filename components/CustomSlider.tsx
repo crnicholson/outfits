@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 export interface CustomSliderRef {
   goTo: (index: number) => void;
+  next: () => void;
+  prev: () => void;
 }
 
 interface CustomSliderProps {
@@ -20,6 +22,12 @@ const CustomSlider = forwardRef<CustomSliderRef, CustomSliderProps>(
     useImperativeHandle(ref, () => ({
       goTo: (index: number) => {
         sliderRef.current?.slickGoTo(index);
+      },
+      next: () => {
+        sliderRef.current?.slickNext();
+      },
+      prev: () => {
+        sliderRef.current?.slickPrev();
       },
     }));
 
@@ -38,6 +46,7 @@ const CustomSlider = forwardRef<CustomSliderRef, CustomSliderProps>(
         <Slider
           ref={sliderRef}
           arrows={false}
+          infinite={true}
           afterChange={(index) => {
             if (onSlideChange) {
               onSlideChange(index);
