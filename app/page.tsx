@@ -25,6 +25,8 @@ export default function Clothes() {
   const [bottomsSlide, setBottomsSlide] = useState(0);
   const [shoesSlide, setShoesSlide] = useState(0);
 
+  const [selectedAccessories, setSelectedAccessories] = useState<string[]>([]);
+
   const hatsSliderRef = useRef<CustomSliderRef>(null);
   const topsSliderRef = useRef<CustomSliderRef>(null);
   const beltsSliderRef = useRef<CustomSliderRef>(null);
@@ -42,6 +44,12 @@ export default function Clothes() {
 
   const handleMouseLeave = () => {
     setHoveredSlide(null);
+  };
+
+  const toggleAccessory = (id: string) => {
+    setSelectedAccessories(prev =>
+      prev.includes(id) ? prev.filter(a => a !== id) : [...prev, id]
+    );
   };
 
   return (
@@ -244,6 +252,42 @@ export default function Clothes() {
             <p className="text-[11px] mt-2">{hoveredSlide.body.toUpperCase()}</p>
           </div>
         )}
+
+        <div className="fixed bottom-5 right-5 z-40">
+          <div className="border p-3">
+            <h3 className="text-xs font-bold mb-2 text-center">ACCESSORIES</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                { id: 'bape', src: '/clothes/accessories/bape.png', alt: 'Bape accessory' },
+                { id: 'oakley', src: '/clothes/accessories/oakley-carabiner.png', alt: 'Oakley accessory' },
+                { id: 'sup', src: '/clothes/accessories/sup.png', alt: 'Supreme accessory' },
+                { id: 'vivi', src: '/clothes/accessories/vivi.png', alt: 'Vivienne Westwood accessory' },
+              ].map((accessory) => (
+                <div
+                  key={accessory.id}
+                  onClick={() => toggleAccessory(accessory.id)}
+                  className={`relative w-16 h-16 border cursor-pointer transition-all hover:scale-102 ${selectedAccessories.includes(accessory.id)
+                    ? 'bg-gray-100'
+                    : 'bg-white'
+                    }`}
+                >
+                  <Image
+                    src={accessory.src}
+                    alt={accessory.alt}
+                    width={60}
+                    height={60}
+                    className="w-full h-full object-contain p-1"
+                  />
+                  {selectedAccessories.includes(accessory.id) && (
+                    <div className="absolute top-0 right-0 w-4 h-4 bg-black rounded-full flex items-center justify-center -mt-1 -mr-1">
+                      <span className="text-white text-[10px]">✓</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div >
   )
