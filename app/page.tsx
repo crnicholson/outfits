@@ -13,12 +13,61 @@ export default function Clothes() {
     alt: string;
     title: string;
     body: string;
+    tags: string;
   };
+
+  const hatsData = [
+    { id: 1, src: '/clothes/hats/arc.avif', alt: 'clothing', title: 'Arcteryx', body: 'Black bird toque', tags: '' },
+    { id: 2, src: '/clothes/hats/stussy.avif', alt: 'clothing', title: 'Stussy', body: 'Brushed out beanie', tags: '' },
+    { id: 3, src: '/clothes/hats/palace.avif', alt: 'clothing', title: 'Oakely ', body: 'Palace x Oakley colab', tags: '' },
+  ];
+
+  const topsData = [
+    { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothing', title: 'Stussy', body: 'Surfboard tee', tags: '' },
+    { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothing', title: 'Marlboro', body: 'Vintage Marlboro fleece', tags: 'Thrifted, Vintage' },
+    { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothing', title: 'Stussy', body: 'Pitstop tee', tags: '' },
+    { id: 4, src: '/clothes/tops/aime.png', alt: 'clothing', title: 'Aime Leon Dore', body: 'Tee', tags: '' },
+    { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothing', title: 'Neovision', body: 'Flannel', tags: 'Thrifted' },
+    { id: 7, src: '/clothes/tops/purple-yellow.png', alt: 'clothing', title: 'Vintage', body: 'Purple and yellow fleece', tags: 'Thrifted, Vintage' },
+  ];
+
+  const beltsData = [
+    { id: 1, src: '/clothes/belt/diesel.png', alt: 'clothing', title: 'Diesel', body: 'Belt', tags: '' },
+    { id: 2, src: '/clothes/belt/stussy.avif', alt: 'clothing', title: 'Stussy ', body: 'Cowboy belt', tags: '' },
+  ];
+
+  const bottomsData = [
+    { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothing', title: 'Dickies', body: 'Double knee', tags: 'Thrifted, Vintage' },
+    { id: 2, src: '/clothes/bottoms/wranglers.png', alt: 'clothing', title: 'Wrangler', body: 'Wide leg', tags: 'Thrifted, Vintage' },
+  ];
+
+  const shoesData = [
+    { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothing', title: 'Wales Bonner', body: 'Wales Bonner x Adidas Sambas', tags: '' },
+    { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothing', title: 'Birkenstocks', body: 'Bostons', tags: '' },
+    { id: 3, src: '/clothes/shoes/timbs.avif', alt: 'clothing', title: 'Timberlands', body: '6 inch boots', tags: 'Thrifted' },
+    { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothing', title: 'Golden Goose', body: 'Ballstars', tags: '' },
+  ];
 
   const [hoveredSlide, setHoveredSlide] = useState<SlideType | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const [showArrows, setShowArrows] = useState(false);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [showHelp, setShowHelp] = useState(false);
+
+  const allTags = Array.from(
+    new Set(
+      [
+        ...hatsData,
+        ...topsData,
+        ...beltsData,
+        ...bottomsData,
+        ...shoesData,
+      ]
+        .flatMap((item) => item.tags.split(',').map((tag) => tag.trim()))
+        .filter((tag) => tag !== '')
+    )
+  );
 
   const [selectedImage, setSelectedImage] = useState<SlideType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,6 +115,21 @@ export default function Clothes() {
     );
   };
 
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const filterByTags = (items: SlideType[]) => {
+    if (selectedTags.length === 0) return items;
+    return items.filter((item) =>
+      selectedTags.some((tag) =>
+        item.tags.toLowerCase().includes(tag.toLowerCase())
+      )
+    );
+  };
+
   return (
     <div className="p-10 relative font-ibm min-h-screen flex justify-center items-center">
       <div className="h-fit w-full">
@@ -84,11 +148,7 @@ export default function Clothes() {
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={true} onClick={() => hatsSliderRef.current?.prev()} />
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={false} onClick={() => hatsSliderRef.current?.next()} />
           <CustomSlider ref={hatsSliderRef} currentSlide={hatsSlide} onSlideChange={setHatsSlide}>
-            {[
-              { id: 1, src: '/clothes/hats/arc.avif', alt: 'clothing', title: 'Arcteryx', body: 'Black bird toque' },
-              { id: 2, src: '/clothes/hats/stussy.avif', alt: 'clothing', title: 'Stussy', body: 'Brushed out beanie' },
-              { id: 3, src: '/clothes/hats/palace.avif', alt: 'clothing', title: 'Oakely ', body: 'Palace x Oakley colab' },
-            ].map((slide) => (
+            {filterByTags(hatsData).map((slide) => (
               <div key={slide.id} className="px-3 mb-7">
                 <div className="flex justify-center items-center w-full">
                   <Image
@@ -113,17 +173,7 @@ export default function Clothes() {
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={true} onClick={() => topsSliderRef.current?.prev()} />
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={false} onClick={() => topsSliderRef.current?.next()} />
           <CustomSlider ref={topsSliderRef} currentSlide={topsSlide} onSlideChange={setTopsSlide}>
-            {[
-              { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothing', title: 'Stussy', body: 'Surfboard tee' },
-              { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothing', title: 'Marlboro', body: 'Vintage Marlboro fleece' },
-              { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothing', title: 'Stussy', body: 'Pitstop tee' },
-              { id: 4, src: '/clothes/tops/aime.png', alt: 'clothing', title: 'Aime Leon Dore', body: 'Tee' },
-              // { id: 5, src: '/clothes/tops/zipup.png', alt: 'clothing', title: '', body: '' },
-              // { id: 6, src: '/clothes/tops/ems.png', alt: 'clothing', title: '', body: '' },
-              // { id: 7, src: '/clothes/tops/stussy-ls.png', alt: 'clothing', title: '', body: '' },
-              { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothing', title: 'Neovision', body: 'Flannel' },
-              { id: 7, src: '/clothes/tops/purple-yellow.png', alt: 'clothing', title: 'Vintage', body: 'Purple and yellow fleece' },
-            ].map((slide) => (
+            {filterByTags(topsData).map((slide) => (
               <div key={slide.id} className="px-3">
                 <div className="flex justify-center items-center w-full">
                   <Image
@@ -148,10 +198,7 @@ export default function Clothes() {
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={true} onClick={() => beltsSliderRef.current?.prev()} />
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={false} onClick={() => beltsSliderRef.current?.next()} />
           <CustomSlider ref={beltsSliderRef} currentSlide={beltsSlide} onSlideChange={setBeltsSlide}>
-            {[
-              { id: 1, src: '/clothes/belt/diesel.png', alt: 'clothing', title: 'Diesel', body: 'Belt' },
-              { id: 2, src: '/clothes/belt/stussy.avif', alt: 'clothing', title: 'Stussy ', body: 'Cowboy belt' },
-            ].map((slide) => (
+            {filterByTags(beltsData).map((slide) => (
               <div key={slide.id} className="px-3">
                 <div className="flex justify-center items-center w-full">
                   <Image
@@ -176,12 +223,7 @@ export default function Clothes() {
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={true} onClick={() => bottomsSliderRef.current?.prev()} />
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={false} onClick={() => bottomsSliderRef.current?.next()} />
           <CustomSlider ref={bottomsSliderRef} currentSlide={bottomsSlide} onSlideChange={setBottomsSlide}>
-            {[
-              { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothing', title: 'Dickies', body: 'Double knee' },
-              { id: 2, src: '/clothes/bottoms/wranglers.png', alt: 'clothing', title: 'Wrangler', body: 'Wide leg' },
-              // { id: 2, src: '/clothes/bottoms/hollister.png', alt: 'clothing', title: 'Hollister', body: 'Sweatpants' },
-              // { id: 3, src: '/clothes/bottoms/llbean-jeans.png', alt: 'clothing', title: '', body: '' },
-            ].map((slide) => (
+            {filterByTags(bottomsData).map((slide) => (
               <div key={slide.id} className="px-3">
                 <div className="-mt-2 flex justify-center items-center w-full h-fit">
                   <Image
@@ -206,12 +248,7 @@ export default function Clothes() {
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={true} onClick={() => shoesSliderRef.current?.prev()} />
           <Arrow className={`${showArrows ? 'block' : 'hidden'}`} left={false} onClick={() => shoesSliderRef.current?.next()} />
           <CustomSlider ref={shoesSliderRef} currentSlide={shoesSlide} onSlideChange={setShoesSlide}>
-            {[
-              { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothing', title: 'Wales Bonner', body: 'Wales Bonner x Adidas Sambas' },
-              { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothing', title: 'Birkenstocks', body: 'Bostons' },
-              { id: 3, src: '/clothes/shoes/timbs.avif', alt: 'clothing', title: 'Timberlands', body: '6 inch boots' },
-              { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothing', title: 'Golden Goose', body: 'Ballstars' },
-            ].map((slide) => (
+            {filterByTags(shoesData).map((slide) => (
               <div key={slide.id} className="px-3">
                 <div className="flex justify-center items-center w-full h-full">
                   <Image
@@ -270,12 +307,120 @@ export default function Clothes() {
           >
             <h1 className="font-bold text-[12px]">{hoveredSlide.title.toUpperCase()}</h1>
             <p className="text-[11px] mt-2">{hoveredSlide.body.toUpperCase()}</p>
+            {hoveredSlide.tags && (hoveredSlide.tags.split(',').map((tag) => (
+              <span
+                key={tag}
+                className="text-[9px] mt-3 inline-block mr-2 px-2 py-1 border bg-black text-white"
+              >
+                {tag.toUpperCase()}
+              </span>
+            )))}
+          </div>
+        )}
+
+        <div className="fixed bottom-5 left-5 z-40">
+          <div className="border p-3 bg-white max-w-xs">
+            <h1 className="text-xs font-bold mb-2">SETTINGS</h1>
+
+            <div className="mb-3 pb-3 border-b">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showArrows}
+                  onChange={(e) => setShowArrows(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-[11px]">SHOW ARROWS</span>
+              </label>
+            </div>
+
+            <div>
+              <h1 className="text-[11px] font-bold mb-2">FILTER BY TAGS</h1>
+              <div className="flex flex-wrap gap-2">
+                {allTags.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleTag(tag)}
+                    className={`text-[10px] px-2 py-1 border transition-colors ${selectedTags.includes(tag)
+                      ? 'bg-black text-white'
+                      : 'bg-white'
+                      }`}
+                  >
+                    {tag.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              {selectedTags.length > 0 && (
+                <button
+                  onClick={() => setSelectedTags([])}
+                  className="text-[10px] mt-2 underline hover:no-underline"
+                >
+                  Clear filters
+                </button>
+              )}
+            </div>
+
+            <button
+              onClick={() => setShowHelp(true)}
+              className="mt-2 w-full text-[11px] border font-bold py-2"
+            >
+              ? HELP
+            </button>
+          </div>
+        </div>
+
+        {showHelp && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+            onClick={() => setShowHelp(false)}
+          >
+            <div
+              className="relative bg-white p-6 max-w-md border"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowHelp(false)}
+                className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center border bg-black text-white text-xl"
+              >
+                ×
+              </button>
+
+              <h1 className="font-bold text-lg mb-4">HOW TO USE</h1>
+
+              <div className="flex flex-col gap-3 text-sm">
+                <div>
+                  <h1 className="font-bold mb-1">NAVIGATE CLOTHES</h1>
+                  <p className="text-xs">• HOVER OVER ITEMS TO SEE DETAILS</p>
+                  <p className="text-xs">• DOUBLE-CLICK TO VIEW LARGER IMAGE</p>
+                  <p className="text-xs">• HOLD AND SLIDE ON IMAGES TO BROWSE</p>
+                </div>
+
+                <div>
+                  <h1 className="font-bold mb-1">ARROWS</h1>
+                  <p className="text-xs">• TOGGLE "SHOW ARROWS" IN SETTINGS TO ENABLE NAVIGATION ARROWS</p>
+                  <p className="text-xs">• CLICK ARROWS TO MOVE BETWEEN ITEMS</p>
+                </div>
+
+                <div>
+                  <h1 className="font-bold mb-1">TAG FILTERING</h1>
+                  <p className="text-xs">• SELECT TAGS IN SETTINGS TO FILTER ITEMS</p>
+                  <p className="text-xs">• MULTIPLE TAGS CAN BE SELECTED</p>
+                  <p className="text-xs">• CLICK "CLEAR FILTERS" TO SHOW ALL ITEMS</p>
+                </div>
+
+                <div>
+                  <h1 className="font-bold mb-1">ACCESSORIES</h1>
+                  <p className="text-xs">• CLICK ACCESSORIES IN THE BOTTOM-RIGHT PANEL TO SELECT THEM</p>
+                  <p className="text-xs">• SELECTED ITEMS ARE MARKED WITH A CHECKMARK</p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
         <div className="fixed bottom-5 right-5 z-40">
           <div className="border p-3 bg-white">
-            <h3 className="text-xs font-bold mb-2 text-center">ACCESSORIES</h3>
+            <h1 className="text-xs font-bold mb-2 text-center">ACCESSORIES</h1>
             <div className="grid grid-cols-2 gap-2">
               {[
                 { id: 1, src: '/clothes/accessories/bape.png', alt: 'bape tote' },
@@ -323,6 +468,7 @@ export default function Clothes() {
         title={selectedImage?.title || ""}
         body={selectedImage?.body || ""}
         alt={selectedImage?.alt || ""}
+        tags={selectedImage?.tags || ""}
       />
     </div >
   )

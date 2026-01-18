@@ -7,6 +7,7 @@ interface ImageModalProps {
     title: string;
     body: string;
     alt: string;
+    tags?: string;
 }
 
 export default function ImageModal({
@@ -16,6 +17,7 @@ export default function ImageModal({
     title,
     body,
     alt,
+    tags,
 }: ImageModalProps) {
     if (!isOpen) return null;
 
@@ -25,7 +27,7 @@ export default function ImageModal({
             onClick={onClose}
         >
             <div
-                className="relative bg-white p-6 max-w-3xl max-h-[90vh] overflow-auto"
+                className="relative bg-white p-6 max-w-3xl max-h-[90vh] overflow-auto border"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
@@ -50,6 +52,9 @@ export default function ImageModal({
                     <div className="text-center flex flex-col gap-2 pt-3 w-full">
                         <h2 className="font-bold">{title.toUpperCase()}</h2>
                         <p className="text-sm">{body.toUpperCase()}</p>
+                        {tags && (
+                            <p className="text-xs text-gray-600 mt-1">{tags.toUpperCase()}</p>
+                        )}
                     </div>
                 </div>
             </div>
