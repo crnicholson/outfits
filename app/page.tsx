@@ -153,8 +153,8 @@ export default function Clothes() {
                 <div className="flex justify-center items-center w-full">
                   <Image
                     src={slide.src!}
-                    width={150}
-                    height={150}
+                    width={600}
+                    height={600}
                     alt={slide.alt!}
                     className="h-[7vh] w-fit" // h-22
                     onMouseEnter={handleMouseEnter(slide)}
@@ -178,8 +178,8 @@ export default function Clothes() {
                 <div className="flex justify-center items-center w-full">
                   <Image
                     src={slide.src!}
-                    width={270}
-                    height={270}
+                    width={600}
+                    height={600}
                     alt={slide.alt!}
                     className="h-[22vh] w-fit" // h-68
                     onMouseEnter={handleMouseEnter(slide)}
@@ -203,8 +203,8 @@ export default function Clothes() {
                 <div className="flex justify-center items-center w-full">
                   <Image
                     src={slide.src!}
-                    width={150}
-                    height={150}
+                    width={600}
+                    height={600}
                     alt={slide.alt!}
                     className="h-[4vh] w-fit" // h-10
                     onMouseEnter={handleMouseEnter(slide)}
@@ -253,8 +253,8 @@ export default function Clothes() {
                 <div className="flex justify-center items-center w-full h-full">
                   <Image
                     src={slide.src!}
-                    width={200}
-                    height={200}
+                    width={600}
+                    height={600}
                     alt={slide.alt!}
                     className="h-[14vh] w-auto" // h-50
                     onMouseEnter={handleMouseEnter(slide)}
