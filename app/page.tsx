@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import CustomSlider, { CustomSliderRef } from "@/components/CustomSlider";
 import Arrow from "@/components/Arrow";
 import Image from "next/image";
+import ImageModal from "@/components/ImageModal";
 
 export default function Clothes() {
   type SlideType = {
@@ -18,6 +19,9 @@ export default function Clothes() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const [showArrows, setShowArrows] = useState(false);
+
+  const [selectedImage, setSelectedImage] = useState<SlideType | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [hatsSlide, setHatsSlide] = useState(0);
   const [topsSlide, setTopsSlide] = useState(0);
@@ -44,6 +48,16 @@ export default function Clothes() {
 
   const handleMouseLeave = () => {
     setHoveredSlide(null);
+  };
+
+  const handleDoubleClick = (slide: SlideType) => () => {
+    setSelectedImage(slide);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
   };
 
   const toggleAccessory = (id: number) => {
@@ -86,6 +100,7 @@ export default function Clothes() {
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
+                    onDoubleClick={handleDoubleClick(slide)}
                     style={{ cursor: 'pointer' }}
                   />
                 </div>
@@ -120,6 +135,7 @@ export default function Clothes() {
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
+                    onDoubleClick={handleDoubleClick(slide)}
                     style={{ cursor: 'pointer' }}
                   />
                 </div>
@@ -147,6 +163,7 @@ export default function Clothes() {
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
+                    onDoubleClick={handleDoubleClick(slide)}
                     style={{ cursor: 'pointer' }}
                   />
                 </div>
@@ -176,6 +193,7 @@ export default function Clothes() {
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
+                    onDoubleClick={handleDoubleClick(slide)}
                     style={{ cursor: 'pointer' }}
                   />
                 </div>
@@ -205,6 +223,7 @@ export default function Clothes() {
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
+                    onDoubleClick={handleDoubleClick(slide)}
                     style={{ cursor: 'pointer' }}
                   />
                 </div>
@@ -255,7 +274,7 @@ export default function Clothes() {
         )}
 
         <div className="fixed bottom-5 right-5 z-40">
-          <div className="border p-3">
+          <div className="border p-3 bg-white">
             <h3 className="text-xs font-bold mb-2 text-center">ACCESSORIES</h3>
             <div className="grid grid-cols-2 gap-2">
               {[
@@ -296,6 +315,15 @@ export default function Clothes() {
           </div>
         </div>
       </div>
+
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        imageSrc={selectedImage?.src || ""}
+        title={selectedImage?.title || ""}
+        body={selectedImage?.body || ""}
+        alt={selectedImage?.alt || ""}
+      />
     </div >
   )
 }
