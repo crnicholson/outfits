@@ -24,12 +24,13 @@ export default function Clothes() {
   ];
 
   const topsData = [
-    { id: 1, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothing', title: 'Stussy', body: 'Surfboard tee', tags: '' },
-    { id: 2, src: '/clothes/tops/maralboro.png', alt: 'clothing', title: 'Marlboro', body: 'Vintage Marlboro fleece', tags: 'Thrifted, Vintage' },
+    { id: 1, src: '/clothes/tops/maralboro.png', alt: 'clothing', title: 'Marlboro', body: 'Vintage Marlboro fleece', tags: 'Thrifted, Vintage' },
+    { id: 2, src: '/clothes/tops/stussy-surfboard.png', alt: 'clothing', title: 'Stussy', body: 'Surfboard tee', tags: '' },
     { id: 3, src: '/clothes/tops/stussy-pitstop.png', alt: 'clothing', title: 'Stussy', body: 'Pitstop tee', tags: '' },
     { id: 4, src: '/clothes/tops/aime.png', alt: 'clothing', title: 'Aime Leon Dore', body: 'Tee', tags: '' },
     { id: 6, src: '/clothes/tops/flannel.png', alt: 'clothing', title: 'Neovision', body: 'Flannel', tags: 'Thrifted' },
     { id: 7, src: '/clothes/tops/purple-yellow.png', alt: 'clothing', title: 'Vintage', body: 'Purple and yellow fleece', tags: 'Thrifted, Vintage' },
+    { id: 8, src: '/clothes/tops/chaps.png', alt: 'clothing', title: 'Chaps', body: 'Sweater', tags: 'Thrifted, Vintage' },
   ];
 
   const beltsData = [
@@ -473,11 +474,11 @@ export default function Clothes() {
               <h1 className="font-bold text-lg mb-4">MY CLOSET</h1>
 
               <p className="mb-5">YOU HAVE STUMBLED UPON CHARLIE NICHOLSON'S PERSONAL CLOSET. THESE ARE A COLLECTION OF PIECES FROM MY CLOSET. NOT EVERYTHING IS PICTURED, OF COURSE.</p>
-          
+
               <p className="mb-5">FEEL FREE TO MESS AROUND WITH MY CLOHTES. IF YOU NEED HELP, PLEASE PRESS THE HELP BUTTON IN THE BOTTOM LEFT CORNER.</p>
-            
+
               <p className="mb-5">IF YOU WANT TO GIVE ME A JOB, PLEASE. I'M BORED.</p>
-             
+
               <p className="mb-5">IF YOU WANT TO SEE MY CLOTHING DESIGNS, YOU ARE OUT OF LUCK. I'M GOING TO GATEKEEP THEM FOR A WHILE.</p>
 
               <p>IF YOU WANT TO SEE MORE COOL SHIT, VISIT MY MAIN <Link className="underline" href="https://v3.crnicholson.com">WEBSITE</Link>.</p>
