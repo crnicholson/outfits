@@ -5,6 +5,7 @@ import CustomSlider, { CustomSliderRef } from "@/components/CustomSlider";
 import Arrow from "@/components/Arrow";
 import Image from "next/image";
 import ImageModal from "@/components/ImageModal";
+import Link from "next/link";
 
 export default function Clothes() {
   type SlideType = {
@@ -54,6 +55,7 @@ export default function Clothes() {
   const [showArrows, setShowArrows] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showHelp, setShowHelp] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   const allTags = Array.from(
     new Set(
@@ -223,7 +225,7 @@ export default function Clothes() {
                 <div className="-mb-4 flex justify-center items-center w-full">
                   <Image
                     src={slide.src!}
-                    width={600} 
+                    width={600}
                     height={600}
                     alt={slide.alt!}
                     className="h-[4vh] w-fit" // h-10
@@ -391,7 +393,14 @@ export default function Clothes() {
               onClick={() => setShowHelp(true)}
               className="mt-2 w-full text-[11px] border font-bold py-2"
             >
-              ? HELP
+              ???
+            </button>
+
+            <button
+              onClick={() => setShowAbout(true)}
+              className="mt-2 w-full text-[11px] border font-bold py-2"
+            >
+              ABOUT
             </button>
           </div>
         </div>
@@ -417,30 +426,70 @@ export default function Clothes() {
               <div className="flex flex-col gap-3 text-sm">
                 <div>
                   <h1 className="font-bold mb-1">NAVIGATE CLOTHES</h1>
-                  <p className="text-xs">• HOVER OVER ITEMS TO SEE DETAILS</p>
-                  <p className="text-xs">• DOUBLE-CLICK TO VIEW LARGER IMAGE</p>
-                  <p className="text-xs">• HOLD AND SLIDE ON IMAGES TO BROWSE</p>
+                  <p className="text-sm">• HOVER OVER ITEMS TO SEE DETAILS</p>
+                  <p className="text-sm">• DOUBLE-CLICK TO VIEW LARGER IMAGE</p>
+                  <p className="text-sm">• HOLD AND SLIDE ON IMAGES TO BROWSE</p>
                 </div>
 
                 <div>
                   <h1 className="font-bold mb-1">ARROWS</h1>
-                  <p className="text-xs">• TOGGLE "SHOW ARROWS" IN SETTINGS TO ENABLE NAVIGATION ARROWS</p>
-                  <p className="text-xs">• CLICK ARROWS TO MOVE BETWEEN ITEMS</p>
+                  <p className="text-sm">• TOGGLE "SHOW ARROWS" IN SETTINGS TO ENABLE NAVIGATION ARROWS</p>
+                  <p className="text-sm">• CLICK ARROWS TO MOVE BETWEEN ITEMS</p>
                 </div>
 
                 <div>
                   <h1 className="font-bold mb-1">TAG FILTERING</h1>
-                  <p className="text-xs">• SELECT TAGS IN SETTINGS TO FILTER ITEMS</p>
-                  <p className="text-xs">• MULTIPLE TAGS CAN BE SELECTED</p>
-                  <p className="text-xs">• CLICK "CLEAR FILTERS" TO SHOW ALL ITEMS</p>
+                  <p className="text-sm">• SELECT TAGS IN SETTINGS TO FILTER ITEMS</p>
+                  <p className="text-sm">• MULTIPLE TAGS CAN BE SELECTED</p>
+                  <p className="text-sm">• CLICK "CLEAR FILTERS" TO SHOW ALL ITEMS</p>
                 </div>
 
                 <div>
                   <h1 className="font-bold mb-1">ACCESSORIES</h1>
-                  <p className="text-xs">• CLICK ACCESSORIES IN THE BOTTOM-RIGHT PANEL TO SELECT THEM</p>
-                  <p className="text-xs">• SELECTED ITEMS ARE MARKED WITH A CHECKMARK</p>
+                  <p className="text-sm">• CLICK ACCESSORIES IN THE BOTTOM-RIGHT PANEL TO SELECT THEM</p>
+                  <p className="text-sm">• SELECTED ITEMS ARE MARKED WITH A CHECKMARK</p>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {showAbout && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+            onClick={() => setShowAbout(false)}
+          >
+            <div
+              className="relative bg-white p-6 max-w-md border text-sm"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowAbout(false)}
+                className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center border bg-black text-white text-xl"
+              >
+                ×
+              </button>
+
+              <h1 className="font-bold text-lg mb-4">MY CLOSET</h1>
+
+              <p className="mb-5">YOU HAVE STUMBLED UPON CHARLIE NICHOLSON'S PERSONAL CLOSET. THESE ARE A COLLECTION OF PIECES FROM MY CLOSET. NOT EVERYTHING IS PICTURED, OF COURSE.</p>
+          
+              <p className="mb-5">FEEL FREE TO MESS AROUND WITH MY CLOHTES. IF YOU NEED HELP, PLEASE PRESS THE HELP BUTTON IN THE BOTTOM LEFT CORNER.</p>
+            
+              <p className="mb-5">IF YOU WANT TO GIVE ME A JOB, PLEASE. I'M BORED.</p>
+             
+              <p className="mb-5">IF YOU WANT TO SEE MY CLOTHING DESIGNS, YOU ARE OUT OF LUCK. I'M GOING TO GATEKEEP THEM FOR A WHILE.</p>
+
+              <p>IF YOU WANT TO SEE MORE COOL SHIT, VISIT MY MAIN <Link className="underline" href="https://v3.crnicholson.com">WEBSITE</Link>.</p>
+
+              {/* <div className="flex flex-col gap-3 text-sm">
+                <div>
+                  <h1 className="font-bold mb-1">NAVIGATE CLOTHES</h1>
+                  <p className="text-sm">• HOVER OVER ITEMS TO SEE DETAILS</p>
+                  <p className="text-sm">• DOUBLE-CLICK TO VIEW LARGER IMAGE</p>
+                  <p className="text-sm">• HOLD AND SLIDE ON IMAGES TO BROWSE</p>
+                </div>
+              </div> */}
             </div>
           </div>
         )}
