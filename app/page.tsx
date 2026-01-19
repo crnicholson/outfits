@@ -33,19 +33,19 @@ export default function Clothes() {
 
   const beltsData = [
     { id: 1, src: '/clothes/belt/diesel.png', alt: 'clothing', title: 'Diesel', body: 'Belt', tags: '' },
-    { id: 2, src: '/clothes/belt/stussy.avif', alt: 'clothing', title: 'Stussy ', body: 'Cowboy belt', tags: '' },
+    // { id: 2, src: '/clothes/belt/stussy.avif', alt: 'clothing', title: 'Stussy ', body: 'Cowboy belt', tags: '' },
   ];
 
   const bottomsData = [
     { id: 1, src: '/clothes/bottoms/dickies-jeans.png', alt: 'clothing', title: 'Dickies', body: 'Double knee', tags: 'Thrifted, Vintage' },
-    { id: 2, src: '/clothes/bottoms/wranglers.png', alt: 'clothing', title: 'Wrangler', body: 'Wide leg', tags: 'Thrifted, Vintage' },
+    { id: 2, src: '/clothes/bottoms/real-wranglers.png', alt: 'clothing', title: 'Wrangler', body: 'Wide leg', tags: 'Thrifted, Vintage' },
   ];
 
   const shoesData = [
     { id: 1, src: '/clothes/shoes/walesbonner.png', alt: 'clothing', title: 'Wales Bonner', body: 'Wales Bonner x Adidas Sambas', tags: '' },
     { id: 2, src: '/clothes/shoes/birkenstocks.png', alt: 'clothing', title: 'Birkenstocks', body: 'Bostons', tags: '' },
     { id: 3, src: '/clothes/shoes/timbs.avif', alt: 'clothing', title: 'Timberlands', body: '6 inch boots', tags: 'Thrifted' },
-    { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothing', title: 'Golden Goose', body: 'Ballstars', tags: '' },
+    // { id: 4, src: '/clothes/shoes/ggdb.png', alt: 'clothing', title: 'Golden Goose', body: 'Ballstars', tags: '' },
   ];
 
   const [hoveredSlide, setHoveredSlide] = useState<SlideType | null>(null);
@@ -130,6 +130,26 @@ export default function Clothes() {
     );
   };
 
+  const randomizeOutfit = () => {
+    const filteredHats = filterByTags(hatsData);
+    const filteredTops = filterByTags(topsData);
+    const filteredBelts = filterByTags(beltsData);
+    const filteredBottoms = filterByTags(bottomsData);
+    const filteredShoes = filterByTags(shoesData);
+
+    const randomHat = Math.floor(Math.random() * filteredHats.length);
+    const randomTop = Math.floor(Math.random() * filteredTops.length);
+    const randomBelt = Math.floor(Math.random() * filteredBelts.length);
+    const randomBottom = Math.floor(Math.random() * filteredBottoms.length);
+    const randomShoe = Math.floor(Math.random() * filteredShoes.length);
+
+    hatsSliderRef.current?.goTo(randomHat);
+    topsSliderRef.current?.goTo(randomTop);
+    beltsSliderRef.current?.goTo(randomBelt);
+    bottomsSliderRef.current?.goTo(randomBottom);
+    shoesSliderRef.current?.goTo(randomShoe);
+  };
+
   return (
     <div className="p-10 relative font-ibm min-h-screen flex justify-center items-center">
       <div className="h-fit w-full">
@@ -200,10 +220,10 @@ export default function Clothes() {
           <CustomSlider ref={beltsSliderRef} currentSlide={beltsSlide} onSlideChange={setBeltsSlide}>
             {filterByTags(beltsData).map((slide) => (
               <div key={slide.id} className="px-3">
-                <div className="flex justify-center items-center w-full">
+                <div className="-mb-4 flex justify-center items-center w-full">
                   <Image
                     src={slide.src!}
-                    width={600}
+                    width={600} 
                     height={600}
                     alt={slide.alt!}
                     className="h-[4vh] w-fit" // h-10
@@ -225,13 +245,13 @@ export default function Clothes() {
           <CustomSlider ref={bottomsSliderRef} currentSlide={bottomsSlide} onSlideChange={setBottomsSlide}>
             {filterByTags(bottomsData).map((slide) => (
               <div key={slide.id} className="px-3">
-                <div className="-mt-2 flex justify-center items-center w-full h-fit">
+                <div className="-mt-1 flex justify-center items-center w-full h-fit">
                   <Image
                     src={slide.src!}
                     width={600}
                     height={600}
                     alt={slide.alt!}
-                    className="h-[37vh] w-auto" // h-100
+                    className="h-[37vh] w-fit" // h-100
                     onMouseEnter={handleMouseEnter(slide)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
@@ -318,7 +338,7 @@ export default function Clothes() {
           </div>
         )}
 
-        <div className="fixed bottom-5 left-5 z-40">
+        <div className="fixed bottom-5 left-5 z-40 md:visible invisible">
           <div className="border p-3 bg-white max-w-xs">
             <h1 className="text-xs font-bold mb-2">SETTINGS</h1>
 
@@ -359,6 +379,13 @@ export default function Clothes() {
                 </button>
               )}
             </div>
+
+            <button
+              onClick={randomizeOutfit}
+              className="mt-2 w-full text-[11px] border font-bold py-2 bg-black text-white"
+            >
+              RANDOMIZE OUTFIT
+            </button>
 
             <button
               onClick={() => setShowHelp(true)}
@@ -418,7 +445,7 @@ export default function Clothes() {
           </div>
         )}
 
-        <div className="fixed bottom-5 right-5 z-40">
+        <div className="fixed bottom-5 right-5 z-40 md:visible invisible">
           <div className="border p-3 bg-white">
             <h1 className="text-xs font-bold mb-2 text-center">ACCESSORIES</h1>
             <div className="grid grid-cols-2 gap-2">
