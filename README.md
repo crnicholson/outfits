@@ -1,6 +1,6 @@
 # Outfits
 
-![image]()
+![image](https://raw.githubusercontent.com/crnicholson/outfits/refs/heads/main/public/ss.png)
 
 [This](https://outfits.crnicholson.com) is a website I created for indexing a selection of my clothes. It offers the ability to randomize the clothes everyday, which lets me get ready for school faster. 
 
