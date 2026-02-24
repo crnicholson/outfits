@@ -477,11 +477,13 @@ export default function Clothes() {
 
               <p className="mb-5">FEEL FREE TO MESS AROUND WITH MY CLOHTES. IF YOU NEED HELP, PLEASE PRESS THE HELP BUTTON IN THE BOTTOM LEFT CORNER.</p>
 
-              <p className="mb-5">IF YOU WANT TO GIVE ME A JOB, PLEASE. I'M BORED.</p>
+              <p className="mb-5">IF YOU WANT TO GIVE ME A JOB, THAT WOULD BE AWESOME.</p>
 
-              <p className="mb-5">IF YOU WANT TO SEE MY CLOTHING DESIGNS, YOU ARE OUT OF LUCK. I'M GOING TO GATEKEEP THEM FOR A WHILE.</p>
+              {/* <p className="mb-5">IF YOU WANT TO SEE MY CLOTHING DESIGNS, YOU ARE OUT OF LUCK. I'M GOING TO GATEKEEP THEM FOR A WHILE.</p> */}
 
-              <p>IF YOU WANT TO SEE MORE COOL SHIT, VISIT MY MAIN <Link className="underline" href="https://v3.crnicholson.com">WEBSITE</Link>.</p>
+              <p className="mb-5">IF YOU WANT TO SEE MORE COOL SHIT, VISIT MY MAIN <Link className="underline" href="https://v3.crnicholson.com">WEBSITE</Link>.</p>
+
+              <p>THIS WEBSITE ALSO HAS FREELY AVAILABLE SOURCE CODE ON <Link className="underline" href="https://github.com/crnicholson/outfits">GITHUB</Link>.</p>
 
               {/* <div className="flex flex-col gap-3 text-sm">
                 <div>
