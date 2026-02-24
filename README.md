@@ -1,6 +1,8 @@
 # Outfits
 
-This is a website I created for indexing a selection of my clothes. It offers the ability to randomize the clothes everyday, which lets me get ready for school faster. 
+![image]()
+
+[This](https://outfits.crnicholson.com) is a website I created for indexing a selection of my clothes. It offers the ability to randomize the clothes everyday, which lets me get ready for school faster. 
 
 To use it, simply drag the clothing items across the screen or enable the arrows in the settings panel. 
 
